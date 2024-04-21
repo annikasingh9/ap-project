@@ -1,56 +1,42 @@
-import sys, random, math
-
-# There will be lists with certain videos or foods idk and they will display for user to pick two, iterate thru multple lists. Then, after they've made selections, they recieve reccomendations for their next watch or purcahse. List of their reccomendations based on what they had picked displays.
-
-#youtubes rec algorithm 
-
-#need another user interface and def function
-
-yt_options = ["top 10 rollarcoasters", "scary stories to tell your friends (REAL)", "top 10 feminist destroyed compilation","DIY friendship bracelet", "5-min Craft (for girls)"]
-
-
-choice1 = input("Pick 1 or 2 to watch")
-for option in options:
-        if choice1 == "1":
-            print(options[0][0])
-
-
-for i in range(2):
-      print(options)
-
-
+import random
 
 video_titles = [
-    "The Secret Life of Cats",
-    "Cooking with Fire: BBQ Mastery",
-    "Exploring the Cosmos: A Journey Through Space",
-    "DIY Home Improvement: Transform Your Space",
-    "The Art of Photography: Capturing Moments",
-    "History Uncovered: Ancient Civilizations",
-    "Fitness Fundamentals: Building a Stronger You"
-]
+    "I Love Minions - Here's Why",
+    "Political Theory - Karl Marx",
+    "Parallel Worlds Probably Exist",
+    "A Tribute to Minecraft",
+    "Funniest Pranks...(REAL! NOT FAKE!)",
+    "Was President JFK Really Killed by the CIA",
+    "TOP 10 paranormal activites caught in 4k" ]
 
 related_topics = {
-    "The Secret Life of Cats": ["Pets", "Animal Behavior", "Cat Care Tips"],
-    "Cooking with Fire: BBQ Mastery": ["Grilling Techniques", "Outdoor Cooking", "Barbecue Recipes"],
-    "Exploring the Cosmos: A Journey Through Space": ["Astronomy", "Space Exploration", "Cosmology"],
-    "DIY Home Improvement: Transform Your Space": ["Home Renovation", "Interior Design", "DIY Projects"],
-    "The Art of Photography: Capturing Moments": ["Photography Tips", "Composition Techniques", "Camera Gear Reviews"],
-    "History Uncovered: Ancient Civilizations": ["Ancient History", "Archaeology", "Historical Mysteries"],
-    "Fitness Fundamentals: Building a Stronger You": ["Exercise Techniques", "Nutrition Tips", "Healthy Lifestyle"]
-}
+    "I Love 'Minions' - Here's Why": ["Dispicable Me", "Analysis", "Animated Films"],
+    "Political Theory - Karl Marx": ["Economics", "Communist theory", "Society"],
+    "Parallel Worlds Probably Exist": ["Physics", "Space Exploration", "Science"],
+    "A Tribute to Minecraft": ["Video Games", "Minecraft", "Nostalgic Content"],
+    "Funniest Pranks...(REAL! NOT FAKE!)": ["Stunts", "Humor", "Drama TV"],
+    "Was President JFK Really Killed by the CIA": ["History", "Conspiracy", "Historical Mysteries"],
+    "TOP 10 paranormal activites caught in 4k": ["Misinformation", "Scary Stories", "Suspense"]}
 
-print("Welcome to our video recommendation system!")
-print("Please select your favorite videos from the list below (separated by commas):")
+def get_recommendations(choices):
+    recommendations = set()
+    for choice in choices:
+        choice = choice.strip()
+        if choice in related_topics:
+            recommendations.update(related_topics[choice])
+    return recommendations
+
+print("Hi! Welcome to this topic recommendation system.")
+print("Pick as many videos as you want from below to watch from the list (write numbers & seperate by comma):")
+
 for index, title in enumerate(video_titles, start=1):
     print(f"{index}. {title}")
 
-user_choices = input("\nEnter your choices: ").split(',')
+user_choices = input("\nPut 'em here (comma-separated numbers): ")
+user_choices = [video_titles[int(choice) - 1] for choice in user_choices.split(',')]
 
-print("\nBased on your choices, you might also\be interested in:")
-for choice in user_choices:
-    choice = choice.strip()
-    if choice in related_topics:
-        print(f"For '{choice}':")
-        for topic in related_topics[choice]:
-            print(f"- {topic}")
+print("\nAccording to my calculations, you'd like these topics:")
+recommendations = get_recommendations(user_choices)
+for topic in recommendations:
+    print(topic)
+
