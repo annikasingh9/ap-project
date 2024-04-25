@@ -12,9 +12,10 @@ video_titles = ["I Love Minions - Here's Why",
     "Was President JFK Really Killed by the CIA",
     "TOP 10 paranormal activites caught in 4k"  
 ]
+#these were all vids on my reccomended at one point or another haha
 
 related_topics = {"I Love Minions - Here's Why": ["Dispicable Me", "Analysis", "Animated Films"],
-    "Political Theory - Karl Marx": ["Economics", "Communist theory", "Society"],
+    "Political Theory - Karl Marx": ["Social Justice", "Sociology", "Economics"],
     "Parallel Worlds Probably Exist": ["Physics", "Space Exploration", "Science"],
     "A Tribute to Minecraft": ["Video Games", "Minecraft", "Nostalgic Content"],
     "Funniest Pranks...(REAL! NOT FAKE!)": ["Stunts", "Humor", "Drama TV"],
@@ -28,7 +29,7 @@ def get_user_choices():
         choices = [video_titles[int(choice.strip()) - 1] for choice in user_input.split(',')]
         return choices
     except ValueError:
-        print("Oops! Please enter numbers only.")
+        print("Oops! Numbers only buddy.")
         return get_user_choices()
     except IndexError:
         print("One or more of your choices are out of the valid range.")
